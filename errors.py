@@ -22,7 +22,7 @@ class Error:
 
     def __str__(self):
         return '{}.{}: {}'.format(
-            self.error.__module__,
+            self.error.__class__.__module__,
             type(self.error).__name__,
             str(self.error)
         )
@@ -86,13 +86,6 @@ if __name__ == '__main__':
         raise CustumError('test')
     except CustumError as e:
         err = Error(e)
-        print(err.msg())
+        # print(err.msg())
 
-    print('')
-
-    from praw.exceptions import PRAWException
-    try:
-        raise PRAWException('test')
-    except PRAWException as e:
-        err = Error(e)
-        print(err.msg())
+    raises_overflow()
