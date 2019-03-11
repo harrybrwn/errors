@@ -21,11 +21,14 @@ class Error:
         self.search_url = 'https://stackoverflow.com/search?q={} python'.format(str(self))
 
     def __str__(self):
-        return '{}.{}: {}'.format(
-            self.error.__class__.__module__,
-            type(self.error).__name__,
-            str(self.error)
-        )
+        if self.error.__class__.__module__ == 'builtins':
+            fmt = '{}{}: {}'.format
+            module = ''
+        else:
+            fmt = '{}.{}: {}'.format
+            module = self.error.__class__.__module__
+
+        return fmt(module, self.error.__class__.__name__, str(self.error))
 
     def msg(self):
         tb = self.error.__traceback__
