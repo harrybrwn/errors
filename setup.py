@@ -8,5 +8,5 @@ setup(
 	author='Harrison Brown',
 	author_email='harrybrown98@gmail.com',
 	license='MIT',
-	packages=['errors'],
+	packages=[],
 )
